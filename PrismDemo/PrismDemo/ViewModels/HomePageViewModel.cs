@@ -8,9 +8,11 @@ namespace PrismDemo.ViewModels
 {
     public class HomePageViewModel : BindableBase
     {
+        public string Title { get; set; }
+
         public HomePageViewModel()
         {
-
+            Title = "Olá";
         }
     }
 }
