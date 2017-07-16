@@ -31,8 +31,6 @@ namespace PrismDemo.ViewModels
 
         private async Task Login()
         {
-            _myService.FazAlgo();
-
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Senha))
             {
                 await _page.DisplayAlert("Atenção", "Preencha login e senha", "OK");
