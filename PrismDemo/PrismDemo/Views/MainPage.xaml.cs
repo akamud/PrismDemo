@@ -8,10 +8,6 @@ namespace PrismDemo.Views
         public MainPage()
         {
             InitializeComponent();
-
-            NavigationPage.SetHasNavigationBar(this, false);
-            
-            BindingContext = new MainPageViewModel(this);
         }
     }
 }

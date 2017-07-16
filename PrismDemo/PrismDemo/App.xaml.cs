@@ -2,6 +2,7 @@
 using Prism.Autofac;
 using Prism.Autofac.Forms;
 using PrismDemo.Services;
+using PrismDemo.ViewModels;
 using PrismDemo.Views;
 using Xamarin.Forms;
 
@@ -15,24 +16,22 @@ namespace PrismDemo
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
-            //NavigationService.NavigateAsync("MainPage");
-
-            DependencyService.Register<IMyService, MyService>();
+            NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes()
         {
             #region builder
-            //var builder = new ContainerBuilder();
+            var builder = new ContainerBuilder();
 
-            //builder.RegisterType<MyService>().As<IMyService>();
+            builder.RegisterType<MyService>().As<IMyService>();
 
-            //builder.Update(Container);
+            builder.Update(Container);
             #endregion
 
-            Container.RegisterTypeForNavigation<MainPage>();
+            Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
             Container.RegisterTypeForNavigation<HomePage>();
+            Container.RegisterTypeForNavigation<NavigationPage>();
         }
     }
 }

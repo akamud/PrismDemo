@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using PrismDemo.Services;
 using PrismDemo.Views;
 using System;
@@ -13,31 +14,29 @@ namespace PrismDemo.ViewModels
 {
     public class MainPageViewModel : BindableBase
     {
-        private readonly Page _page;
-        private readonly INavigation _navigation;
         private readonly IMyService _myService;
 
-        public MainPageViewModel(Page page)
+        public MainPageViewModel(IPageDialogService pageDialogService, INavigationService navigationService, IMyService myService)
         {
-            _page = page;
-            _navigation = page.Navigation;
-
-            _myService = DependencyService.Get<IMyService>();
+            _pageDialogService = pageDialogService;
+            _myService = myService;
+            _navigationService = navigationService;
         }
 
-        private Command loginCommand;
-        public Command LoginCommand => loginCommand = loginCommand ?? new Command(async () => await Login()
-            , CanLogin);
+        private DelegateCommand loginCommand;
+        public DelegateCommand LoginCommand => loginCommand = loginCommand ?? new DelegateCommand(async () => await Login()
+            , CanLogin)
+            .ObservesProperty(() => Senha).ObservesProperty(() => Username);
 
         private async Task Login()
         {
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Senha))
             {
-                await _page.DisplayAlert("Atenção", "Preencha login e senha", "OK");
+                await _pageDialogService.DisplayAlertAsync("Atenção", "Preencha login e senha", "OK");
             }
             else
             {
-                await _navigation.PushAsync(new HomePage());
+                await _navigationService.NavigateAsync("HomePage?Title=TDC SP 2017");
             }
         }
 
@@ -47,27 +46,20 @@ namespace PrismDemo.ViewModels
         }
 
         private string _username;
-
         public string Username
         {
             get { return _username; }
-            set
-            {
-                SetProperty(ref _username, value);
-                LoginCommand.ChangeCanExecute();
-            }
+            set { SetProperty(ref _username, value); }
         }
 
         private string _senha;
-
         public string Senha
         {
             get { return _senha; }
-            set
-            {
-                SetProperty(ref _senha, value);
-                LoginCommand.ChangeCanExecute();
-            }
+            set { SetProperty(ref _senha, value); }
         }
+
+        private readonly IPageDialogService _pageDialogService;
+        private readonly INavigationService _navigationService;
     }
 }
