@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using PrismDemo.Services;
 using PrismDemo.Views;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,14 @@ namespace PrismDemo.ViewModels
     {
         private readonly Page _page;
         private readonly INavigation _navigation;
+        private readonly IMyService _myService;
 
         public MainPageViewModel(Page page)
         {
             _page = page;
-            _navigation = DependencyService.Get<INavigation>() ?? page.Navigation;
+            _navigation = page.Navigation;
+
+            _myService = DependencyService.Get<IMyService>();
         }
 
         private Command loginCommand;
@@ -27,6 +31,8 @@ namespace PrismDemo.ViewModels
 
         private async Task Login()
         {
+            _myService.FazAlgo();
+
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Senha))
             {
                 await _page.DisplayAlert("Atenção", "Preencha login e senha", "OK");

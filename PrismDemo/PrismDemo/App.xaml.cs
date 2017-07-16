@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Prism.Autofac;
 using Prism.Autofac.Forms;
+using PrismDemo.Services;
 using PrismDemo.Views;
 using Xamarin.Forms;
 
@@ -16,6 +17,8 @@ namespace PrismDemo
 
             MainPage = new NavigationPage(new MainPage());
             //NavigationService.NavigateAsync("MainPage");
+
+            DependencyService.Register<IMyService, MyService>();
         }
 
         protected override void RegisterTypes()
