@@ -14,12 +14,14 @@ namespace PrismDemo
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("MainPage");
+            MainPage = new NavigationPage(new MainPage());
+            //NavigationService.NavigateAsync("MainPage");
         }
 
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<MainPage>();
+            Container.RegisterTypeForNavigation<HomePage>();
         }
     }
 }

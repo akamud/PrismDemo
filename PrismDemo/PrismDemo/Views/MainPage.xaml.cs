@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using PrismDemo.ViewModels;
+using Xamarin.Forms;
 
 namespace PrismDemo.Views
 {
@@ -7,6 +8,10 @@ namespace PrismDemo.Views
         public MainPage()
         {
             InitializeComponent();
+
+            NavigationPage.SetHasNavigationBar(this, false);
+
+            BindingContext = new MainPageViewModel(this, Navigation);
         }
     }
 }
