@@ -8,6 +8,8 @@ namespace PrismDemo.Views
         public MainPage()
         {
             InitializeComponent();
+
+            NavigationPage.SetBackButtonTitle(this, "");
         }
     }
 }

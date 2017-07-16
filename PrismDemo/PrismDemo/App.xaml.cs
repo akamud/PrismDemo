@@ -16,7 +16,7 @@ namespace PrismDemo
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("NavigationPage/MainPage");
+            NavigationService.NavigateAsync("ViewA?Title=TDC A/ViewB?Title=TDC B/ViewC?Title=TDC C/NavigationPage/MainPage/ViewA");
         }
 
         protected override void RegisterTypes()
@@ -32,6 +32,10 @@ namespace PrismDemo
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
             Container.RegisterTypeForNavigation<HomePage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
+            Container.RegisterTypeForNavigation<MasterDetailPage>();
+            Container.RegisterTypeForNavigation<ViewA>();
+            Container.RegisterTypeForNavigation<ViewB>();
+            Container.RegisterTypeForNavigation<ViewC>();
         }
     }
 }
