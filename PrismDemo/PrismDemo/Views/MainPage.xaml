@@ -4,8 +4,14 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismDemo.Views.MainPage"
-             Title="MainPage">
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Label Text="{Binding Title}" />
-  </StackLayout>
+             Title="MainPage"
+             BackgroundColor="#2F4159">
+  <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="10">
+        <Label Text="Login" TextColor="#FFFFFF"/>
+        <Entry TextColor="#FFFFFF" />
+        <Label Text="Senha" TextColor="#FFFFFF"/>
+        <Entry TextColor="#FFFFFF" IsPassword="True"/>
+
+        <Button BackgroundColor="#009A9A" Text="Entrar" TextColor="#FFFFFF"/>
+    </StackLayout>
 </ContentPage>
