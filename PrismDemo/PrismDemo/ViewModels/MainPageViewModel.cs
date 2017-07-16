@@ -53,7 +53,7 @@ namespace PrismDemo.ViewModels
             get { return _username; }
             set
             {
-                _username = value;
+                SetProperty(ref _username, value);
                 LoginCommand.ChangeCanExecute();
             }
         }
@@ -65,7 +65,7 @@ namespace PrismDemo.ViewModels
             get { return _senha; }
             set
             {
-                _senha = value;
+                SetProperty(ref _senha, value);
                 LoginCommand.ChangeCanExecute();
             }
         }
