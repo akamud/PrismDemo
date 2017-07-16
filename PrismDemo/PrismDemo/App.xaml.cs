@@ -23,6 +23,14 @@ namespace PrismDemo
 
         protected override void RegisterTypes()
         {
+            #region builder
+            //var builder = new ContainerBuilder();
+
+            //builder.RegisterType<MyService>().As<IMyService>();
+
+            //builder.Update(Container);
+            #endregion
+
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<HomePage>();
         }
