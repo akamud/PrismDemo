@@ -15,10 +15,10 @@ namespace PrismDemo.ViewModels
         private readonly Page _page;
         private readonly INavigation _navigation;
 
-        public MainPageViewModel(Page page, INavigation navigation)
+        public MainPageViewModel(Page page)
         {
             _page = page;
-            _navigation = navigation;
+            _navigation = DependencyService.Get<INavigation>() ?? page.Navigation;
         }
 
         private Command loginCommand;

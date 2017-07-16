@@ -10,8 +10,8 @@ namespace PrismDemo.Views
             InitializeComponent();
 
             NavigationPage.SetHasNavigationBar(this, false);
-
-            BindingContext = new MainPageViewModel(this, Navigation);
+            
+            BindingContext = new MainPageViewModel(this);
         }
     }
 }
